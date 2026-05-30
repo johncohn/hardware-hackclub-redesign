@@ -131,72 +131,19 @@ img {
   color: #ffffff;
 }
 
-/* ── Hero ── */
-#hero {
-  padding: 96px 0 80px;
-  background: linear-gradient(160deg, #121217 60%, #17171d 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-#hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(236,55,80,0.15) 1px, transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-#hero .container {
-  position: relative;
-  z-index: 1;
-}
-
-#hero h1 {
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -2px;
-  margin-bottom: 20px;
-}
-
-.red {
-  color: #ec3750;
-}
-
-.tagline {
-  font-size: 20px;
-  color: #f9fafc;
-  max-width: 600px;
-  margin-bottom: 16px;
-  font-weight: 500;
-}
-
-.subtext {
-  font-size: 16px;
-  color: #8492a6;
-  max-width: 560px;
-  margin-bottom: 32px;
-  line-height: 1.7;
-}
-
-.stat-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 32px;
-}
-
-.chip {
-  padding: 6px 16px;
-  border: 1.5px solid #3c4858;
-  border-radius: 99999px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #f9fafc;
-  background: #252429;
+/* ── Hero ── (PCB trace bg + split layout defined in inline <style>) */
+/* Responsive hero layout */
+@media (max-width: 860px) {
+  #hero .container {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .hero-photo {
+    flex: none;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
 }
 
 /* ── Gallery / Marquee ── */
@@ -362,36 +309,6 @@ section h3 {
 .card-stasis  { border-left: 4px solid #338eda; }
 .card-hackpad { border-left: 4px solid #33d6a6; }
 
-/* ── Stats ── */
-#stats {
-  background: linear-gradient(135deg, #ec3750, #ff8c37);
-  padding: 64px 0;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  text-align: center;
-}
-
-.stat-number {
-  display: block;
-  font-size: 56px;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1;
-}
-
-.stat-label {
-  display: block;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 6px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
 
 /* ── Get Help ── */
 .help-links {
@@ -496,17 +413,8 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
   .nav-links a:not(.btn) {
     display: none;
-  }
-
-  .stat-number {
-    font-size: 36px;
   }
 
   .help-links {
@@ -517,10 +425,6 @@ footer {
 @media (max-width: 480px) {
   .program-grid.past {
     grid-template-columns: 1fr;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   #hero {
