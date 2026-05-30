@@ -293,37 +293,6 @@
 
     .past-card:hover { opacity: 1; }
 
-    /* ── Stats ── */
-    #stats {
-      background: linear-gradient(135deg, #ec3750, #ff8c37);
-      padding: 64px 0;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-      text-align: center;
-    }
-
-    .stat-number {
-      display: block;
-      font-size: 56px;
-      font-weight: 700;
-      color: #ffffff;
-      line-height: 1;
-    }
-
-    .stat-label {
-      display: block;
-      font-size: 14px;
-      color: rgba(255,255,255,0.8);
-      margin-top: 6px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
     /* ── Get Help ── */
     .help-links {
       display: flex;
@@ -405,14 +374,11 @@
       .tagline { font-size: 17px; }
       .program-grid { grid-template-columns: 1fr; }
       .program-grid.past { grid-template-columns: repeat(2, 1fr); }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .nav-links a:not(.btn) { display: none; }
-      .stat-number { font-size: 36px; }
     }
 
     @media (max-width: 480px) {
       .program-grid.past { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
       #hero { padding: 64px 0 48px; }
     }
   </style>
@@ -437,17 +403,13 @@
     <div class="container">
       <div class="hero-text">
         <h1><span class="red">Hardware</span>@Hackclub</h1>
-        <p class="tagline">Since 2023, thousands of Hackclubbers have built electronics projects — from first-time soldering to custom PCBs and FPGAs.</p>
+        <p class="tagline">Since 2023, over 6,000 Hackclubbers have built electronics projects — from first-time soldering to custom PCBs, FPGAs, and beyond.</p>
         <p class="subtext">Join us in building any electronics project you can dream up. Anything goes: breadboard projects, custom PCBs, FPGAs, robots — if you can imagine it, build it.</p>
-        <div class="stat-chips">
-          <span class="chip">6000+ Makers</span>
-          <span class="chip">Since 2023</span>
-          <span class="chip">$4M+ Raised</span>
-        </div>
         <a href="https://slack.hackclub.com" class="btn btn-primary">Join the Community</a>
       </div>
       <div class="hero-photo">
-        <img src="https://highway.hackclub.com/desc2.png" alt="3D printer project by a 17-year-old Hackclubber" loading="lazy">
+        <img src="assets/sparkle-tilt.png" alt="Sparkle Tilt — custom PCB designed by Karmanyaah Malhotra with Hack Club" loading="lazy">
+        <p class="photo-credit">Sparkle Tilt by Karmanyaah Malhotra</p>
       </div>
     </div>
   </section>
@@ -556,30 +518,6 @@
     </div>
   </section>
 
-
-  <!-- ── Stats ── -->
-  <section id="stats">
-    <div class="container">
-      <div class="stats-grid">
-        <div>
-          <span class="stat-number">6,000+</span>
-          <span class="stat-label">Makers</span>
-        </div>
-        <div>
-          <span class="stat-number">$4M+</span>
-          <span class="stat-label">Raised</span>
-        </div>
-        <div>
-          <span class="stat-number">3+</span>
-          <span class="stat-label">Years</span>
-        </div>
-        <div>
-          <span class="stat-number">9</span>
-          <span class="stat-label">Programs</span>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ── Get Help ── -->
   <section id="get-help">
