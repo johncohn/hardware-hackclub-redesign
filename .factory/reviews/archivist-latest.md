@@ -1,14 +1,15 @@
 # Archivist Agent Output
 
-- **timestamp:** 2026-05-30T14:55:32Z
+- **timestamp:** 2026-05-30T15:06:01Z
 - **exit_code:** 0
 
 ---
 
-Performance report regenerated successfully (7 observations indexed, run from `/Users/jcohn/remote-factory`). All archive tasks complete:
+`experiments=2` — correct. All archive tasks complete:
 
-- **Experiment note written**: `.factory/archive/experiments/help-me-create-a-new-design-for-httphardwareha-001.md` — Phase 1 KEEP verdict, 0.0 → 1.0 (+1.0), all 6 dimensions at 1.0, builder overdelivered by including marquee animation
-- **Project dashboard updated**: Score updated to 1.0, 1 experiment kept, state changed to "Phase 1 COMPLETE — Phase 2 (aesthetic polish) ready to build"
-- **Performance report**: Regenerated with 7 observations indexed
-
-Phase 2 is next: aesthetic polish only (hero decorative element, stats band gradient, card accent stripes, year badges) — eval is already maxed at 1.0 so Phase 2 is visual quality improvement only.
+- **Experiment notes** (`experiments/` dir): both `001` and `002` already existed and are correct
+- **Project dashboard** (`.factory/archive/help-me-create-a-new-design-for-httphardwareha.md`): already accurate — 1.0/1.0, 2 kept, 0 reverted
+- **Cycle summary** written to `.factory/archive/cycle-summary-2026-05-30.md` — covers what was built (2-phase HTML landing page), score (1.0/1.0), tech stack (vanilla HTML+CSS + Hackclub CDN), E2E verification (PASS), and backlog (real project photos, stats copy, program descriptions)
+- **Patterns** written to `.factory/archive/patterns/patterns.md` — 3 cross-project patterns documented
+- **`results.tsv`** populated with both experiment rows (was header-only)
+- **`factory report-update`** now reads `record_count=2`, `experiments=2` — report is accurate
