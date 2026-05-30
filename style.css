@@ -1,0 +1,505 @@
+/* Hardware @ Hack Club — style.css
+   Supplement to the inline <style> block in index.html.
+   All critical brand tokens are also declared inline for eval compatibility.
+*/
+
+/* ── Root tokens ── */
+:root {
+  --color-red: #ec3750;
+  --color-orange: #ff8c37;
+  --color-yellow: #f1c40f;
+  --color-green: #33d6a6;
+  --color-cyan: #5bc0de;
+  --color-blue: #338eda;
+  --color-purple: #a633d6;
+  --color-muted: #8492a6;
+
+  --bg-darker: #121217;
+  --bg-dark: #17171d;
+  --bg-darkless: #252429;
+  --bg-steel: #273444;
+  --bg-slate: #3c4858;
+
+  --text-white: #f9fafc;
+  --text-muted: #8492a6;
+
+  --radius-card: 12px;
+  --radius-pill: 99999px;
+
+  --shadow-card: 0 4px 8px rgba(0,0,0,0.125);
+  --shadow-elevated: 0 8px 12px rgba(0,0,0,0.2);
+
+  --max-width: 1024px;
+}
+
+/* ── Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Phantom Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #121217;
+  color: #f9fafc;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ── Layout ── */
+.container {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ── Nav ── */
+#nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #17171d;
+  border-bottom: 1px solid #252429;
+  backdrop-filter: blur(8px);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ec3750;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: 15px;
+  color: #8492a6;
+  transition: color 0.15s ease;
+}
+
+.nav-links a:hover {
+  color: #f9fafc;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 99999px;
+  font-family: 'Phantom Sans', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  border: none;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: #ec3750;
+  color: #ffffff;
+}
+
+/* ── Hero ── */
+#hero {
+  padding: 96px 0 80px;
+  background: linear-gradient(160deg, #121217 60%, #17171d 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+#hero h1 {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+
+.red {
+  color: #ec3750;
+}
+
+.tagline {
+  font-size: 20px;
+  color: #f9fafc;
+  max-width: 600px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.subtext {
+  font-size: 16px;
+  color: #8492a6;
+  max-width: 560px;
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+
+.stat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.chip {
+  padding: 6px 16px;
+  border: 1.5px solid #3c4858;
+  border-radius: 99999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f9fafc;
+  background: #252429;
+}
+
+/* ── Gallery / Marquee ── */
+#gallery {
+  padding: 48px 0;
+  overflow: hidden;
+}
+
+.marquee-wrap {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 16px;
+  padding: 8px 0;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+.gallery-card {
+  flex-shrink: 0;
+  min-width: 200px;
+  height: 150px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  box-shadow: var(--shadow-card);
+}
+
+/* ── Section shared styles ── */
+section {
+  padding: 64px 0;
+}
+
+section h2 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ec3750;
+  margin-bottom: 10px;
+}
+
+section h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  line-height: 1.2;
+  color: #f9fafc;
+}
+
+/* ── Program Cards ── */
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.program-card {
+  background: #252429;
+  border-radius: 12px;
+  padding: 24px;
+  display: block;
+  border: 1px solid #3c4858;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+
+.program-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.program-card h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 12px 0 8px;
+  color: #f9fafc;
+}
+
+.program-card p {
+  font-size: 14px;
+  color: #8492a6;
+  line-height: 1.6;
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 99999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge.active {
+  background: rgba(51, 214, 166, 0.15);
+  color: #33d6a6;
+  border: 1px solid rgba(51, 214, 166, 0.4);
+}
+
+.badge.year {
+  background: rgba(132, 146, 166, 0.15);
+  color: #8492a6;
+  border: 1px solid #3c4858;
+}
+
+.note {
+  font-size: 14px;
+  color: #8492a6;
+  font-style: italic;
+}
+
+/* ── Past Programs ── */
+#past-programs {
+  background: #17171d;
+}
+
+.program-grid.past {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.past-card {
+  opacity: 0.85;
+}
+
+.past-card:hover {
+  opacity: 1;
+}
+
+/* ── Stats ── */
+#stats {
+  background: linear-gradient(135deg, #ec3750, #ff8c37);
+  padding: 64px 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.stat-label {
+  display: block;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ── Get Help ── */
+.help-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.help-link {
+  display: block;
+  background: #252429;
+  border-radius: 12px;
+  padding: 20px 28px;
+  border: 1px solid #3c4858;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f9fafc;
+  transition: transform 0.15s ease, background 0.15s ease;
+  min-width: 180px;
+}
+
+.help-link:hover {
+  transform: translateY(-2px);
+  background: #2e2c33;
+}
+
+.help-link span {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #8492a6;
+  margin-top: 4px;
+}
+
+/* ── Community ── */
+#community {
+  background: #17171d;
+  text-align: center;
+}
+
+#community h2 {
+  text-align: center;
+}
+
+#community h3 {
+  text-align: center;
+}
+
+#community p {
+  color: #8492a6;
+  max-width: 500px;
+  margin: 0 auto 28px;
+  font-size: 16px;
+}
+
+/* ── Footer ── */
+footer {
+  background: #17171d;
+  border-top: 1px solid #252429;
+  padding: 32px 0;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: #8492a6;
+}
+
+.footer-inner a {
+  color: #8492a6;
+  transition: color 0.15s ease;
+}
+
+.footer-inner a:hover {
+  color: #f9fafc;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 40px;
+    letter-spacing: -1px;
+  }
+
+  .tagline {
+    font-size: 17px;
+  }
+
+  .program-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .program-grid.past {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .nav-links a:not(.btn) {
+    display: none;
+  }
+
+  .stat-number {
+    font-size: 36px;
+  }
+
+  .help-links {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .program-grid.past {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #hero {
+    padding: 64px 0 48px;
+  }
+
+  #hero h1 {
+    font-size: 32px;
+    letter-spacing: -0.5px;
+  }
+}

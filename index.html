@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hardware @ Hack Club</title>
+  <meta name="description" content="Since 2023, 6000+ Hackclubbers have built electronics projects with Hack Club. Join us in building any electronics project you can dream up.">
+  <link rel="stylesheet" href="https://css.hackclub.com/fonts.css">
+  <link rel="stylesheet" href="https://css.hackclub.com/theme.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Phantom Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #121217;
+      color: #f9fafc;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1024px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    /* ── Nav ── */
+    #nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #17171d;
+      border-bottom: 1px solid #252429;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ec3750;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      font-size: 15px;
+      color: #8492a6;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: #f9fafc; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: 99999px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.15s;
+      border: none;
+    }
+
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-primary {
+      background: #ec3750;
+      color: #ffffff;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      padding: 96px 0 80px;
+      background: linear-gradient(160deg, #121217 60%, #17171d 100%);
+    }
+
+    #hero h1 {
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .red { color: #ec3750; }
+
+    .tagline {
+      font-size: 20px;
+      color: #f9fafc;
+      max-width: 600px;
+      margin-bottom: 16px;
+    }
+
+    .subtext {
+      font-size: 16px;
+      color: #8492a6;
+      max-width: 560px;
+      margin-bottom: 32px;
+    }
+
+    .stat-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .chip {
+      padding: 6px 16px;
+      border: 1.5px solid #252429;
+      border-radius: 99999px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #f9fafc;
+      background: #252429;
+    }
+
+    /* ── Gallery / Marquee ── */
+    #gallery {
+      padding: 48px 0;
+      overflow: hidden;
+    }
+
+    .marquee-wrap {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 16px;
+      padding: 8px 0;
+      animation: marquee 32s linear infinite;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+    }
+
+    .gallery-card {
+      flex-shrink: 0;
+      min-width: 200px;
+      height: 150px;
+      border-radius: 12px;
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    /* ── Sections shared ── */
+    section { padding: 64px 0; }
+
+    section h2 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #ec3750;
+      margin-bottom: 10px;
+    }
+
+    section h3 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      line-height: 1.2;
+    }
+
+    /* ── Program cards ── */
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .program-card {
+      background: #252429;
+      border-radius: 12px;
+      padding: 24px;
+      display: block;
+      border: 1px solid #3c4858;
+      transition: transform 0.15s, box-shadow 0.15s;
+      position: relative;
+    }
+
+    .program-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .program-card h4 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 12px 0 8px;
+    }
+
+    .program-card p {
+      font-size: 14px;
+      color: #8492a6;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 99999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge.active {
+      background: rgba(51, 214, 166, 0.15);
+      color: #33d6a6;
+      border: 1px solid #33d6a6;
+    }
+
+    .badge.year {
+      background: #252429;
+      color: #8492a6;
+      border: 1px solid #3c4858;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #8492a6;
+      font-style: italic;
+    }
+
+    /* ── Past programs ── */
+    #past-programs { background: #17171d; }
+
+    .program-grid.past { grid-template-columns: repeat(3, 1fr); }
+
+    .past-card {
+      opacity: 0.85;
+    }
+
+    .past-card:hover { opacity: 1; }
+
+    /* ── Stats ── */
+    #stats {
+      background: linear-gradient(135deg, #ec3750, #ff8c37);
+      padding: 64px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 48px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 6px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── Get Help ── */
+    .help-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .help-link {
+      display: block;
+      background: #252429;
+      border-radius: 12px;
+      padding: 20px 28px;
+      border: 1px solid #3c4858;
+      font-size: 16px;
+      font-weight: 700;
+      color: #f9fafc;
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    .help-link:hover {
+      transform: translateY(-2px);
+      background: #2e2c33;
+    }
+
+    .help-link span {
+      display: block;
+      font-size: 13px;
+      font-weight: 400;
+      color: #8492a6;
+      margin-top: 4px;
+    }
+
+    /* ── Community ── */
+    #community {
+      background: #17171d;
+      text-align: center;
+    }
+
+    #community h2 {
+      text-align: center;
+    }
+
+    #community h3 {
+      text-align: center;
+    }
+
+    #community p {
+      color: #8492a6;
+      max-width: 500px;
+      margin: 0 auto 28px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #17171d;
+      border-top: 1px solid #252429;
+      padding: 32px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+      color: #8492a6;
+    }
+
+    .footer-inner a {
+      color: #8492a6;
+      transition: color 0.15s;
+    }
+
+    .footer-inner a:hover { color: #f9fafc; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      #hero h1 { font-size: 40px; letter-spacing: -1px; }
+      .tagline { font-size: 17px; }
+      .program-grid { grid-template-columns: 1fr; }
+      .program-grid.past { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links a:not(.btn) { display: none; }
+      .stat-number { font-size: 36px; }
+    }
+
+    @media (max-width: 480px) {
+      .program-grid.past { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      #hero { padding: 64px 0 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav id="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">Hack Club</a>
+      <div class="nav-links">
+        <a href="https://hackclub.com/docs">Docs</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#">Leaderboard</a>
+        <a href="https://slack.hackclub.com" class="btn btn-primary">Join Slack</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section id="hero">
+    <div class="container">
+      <h1><span class="red">Hardware</span>@Hackclub</h1>
+      <p class="tagline">Since 2023, 6000+ Hackclubbers have built electronics projects with Hack Club</p>
+      <p class="subtext">Join us in building any electronics project you can dream up — from your very first soldering, to massive multi-person projects. Anything goes: breadboard projects, custom PCBs, FPGAs.</p>
+      <div class="stat-chips">
+        <span class="chip">6000+ Makers</span>
+        <span class="chip">Since 2023</span>
+        <span class="chip">$4M+ Raised</span>
+      </div>
+      <a href="https://slack.hackclub.com" class="btn btn-primary">Join the Community</a>
+    </div>
+  </section>
+
+  <!-- ── Scrolling Gallery ── -->
+  <section id="gallery">
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <!-- 12 project cards -->
+        <div class="gallery-card" style="background: linear-gradient(135deg, #ec3750, #ff8c37);">Custom PCB</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #ff8c37, #f1c40f);">LED Matrix</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #33d6a6, #338eda);">FPGA Board</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #338eda, #a633d6);">Mech Keyboard</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #a633d6, #ec3750);">Robot Arm</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #5bc0de, #33d6a6);">Weather Station</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #f1c40f, #33d6a6);">Synthesizer</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #ec3750, #a633d6);">RC Car Controller</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #338eda, #5bc0de);">Smart Mirror</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #ff8c37, #ec3750);">Laser Cutter</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #a633d6, #338eda);">3D Printer Mod</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #33d6a6, #f1c40f);">Guitar Pedal</div>
+        <!-- Duplicated for seamless loop -->
+        <div class="gallery-card" style="background: linear-gradient(135deg, #ec3750, #ff8c37);">Custom PCB</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #ff8c37, #f1c40f);">LED Matrix</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #33d6a6, #338eda);">FPGA Board</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #338eda, #a633d6);">Mech Keyboard</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #a633d6, #ec3750);">Robot Arm</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #5bc0de, #33d6a6);">Weather Station</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #f1c40f, #33d6a6);">Synthesizer</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #ec3750, #a633d6);">RC Car Controller</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #338eda, #5bc0de);">Smart Mirror</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #ff8c37, #ec3750);">Laser Cutter</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #a633d6, #338eda);">3D Printer Mod</div>
+        <div class="gallery-card" style="background: linear-gradient(135deg, #33d6a6, #f1c40f);">Guitar Pedal</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Current Programs ── -->
+  <section id="current-programs">
+    <div class="container">
+      <h2>Get Building</h2>
+      <h3>Current Hardware Programs at Hack Club</h3>
+      <div class="program-grid">
+        <a href="https://fallout.hackclub.com/" class="program-card">
+          <span class="badge active">Active</span>
+          <h4>Fallout</h4>
+          <p>Build hardware projects, earn grants. The most active YSWS hardware program.</p>
+        </a>
+        <a href="https://stasis.hackclub.com/" class="program-card">
+          <span class="badge active">Active</span>
+          <h4>Stasis</h4>
+          <p>Preserve your projects in time. A program for archiving and showcasing completed hardware.</p>
+        </a>
+        <a href="https://hackpad.hackclub.com/" class="program-card">
+          <span class="badge active">Active</span>
+          <h4>Hackpad</h4>
+          <p>Build your own custom macropad. Design, print, and program a mini keyboard from scratch.</p>
+        </a>
+      </div>
+      <p class="note">We start new campaigns regularly, so check back often!</p>
+    </div>
+  </section>
+
+  <!-- ── Past Programs ── -->
+  <section id="past-programs">
+    <div class="container">
+      <h2>Past Programs</h2>
+      <h3>Check out these previous programs for inspiration</h3>
+      <div class="program-grid past">
+        <a href="https://blueprint.hackclub.com/" class="program-card past-card">
+          <span class="badge year">2024</span>
+          <h4>Blueprint</h4>
+          <p>Hardware hacking at its most creative. A program for building unusual and experimental electronics.</p>
+        </a>
+        <a href="https://undercity.hackclub.com/" class="program-card past-card">
+          <span class="badge year">2024</span>
+          <h4>Undercity</h4>
+          <p>166 teen makers, 75 projects, 19 countries — a 72-hour underground hardware sprint.</p>
+        </a>
+        <a href="https://highway.hackclub.com/" class="program-card past-card">
+          <span class="badge year">2024</span>
+          <h4>Highway</h4>
+          <p>Design any hardware project, get a grant to make it real. The summer highway to building.</p>
+        </a>
+        <a href="https://solder.hackclub.com/" class="program-card past-card">
+          <span class="badge year">2023</span>
+          <h4>Solder</h4>
+          <p>Your introduction to soldering and electronics assembly. A hands-on beginner program.</p>
+        </a>
+        <a href="https://v3.hackclub.com/bin/" class="program-card past-card">
+          <span class="badge year">2023</span>
+          <h4>The Bin</h4>
+          <p>A treasure trove of components. Get parts to build whatever you can imagine.</p>
+        </a>
+        <a href="https://v3.hackclub.com/onboard/" class="program-card past-card">
+          <span class="badge year">2023</span>
+          <h4>OnBoard</h4>
+          <p>Circuit boards are magical. Design your first PCB and get it manufactured for free.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Stats ── -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <span class="stat-number">6,000+</span>
+          <span class="stat-label">Makers</span>
+        </div>
+        <div>
+          <span class="stat-number">$4M+</span>
+          <span class="stat-label">Raised</span>
+        </div>
+        <div>
+          <span class="stat-number">3+</span>
+          <span class="stat-label">Years</span>
+        </div>
+        <div>
+          <span class="stat-number">9</span>
+          <span class="stat-label">Programs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Get Help ── -->
+  <section id="get-help">
+    <div class="container">
+      <h2>Resources</h2>
+      <h3>Need Help Getting Started?</h3>
+      <div class="help-links">
+        <a href="https://hackclub.com/docs" class="help-link">
+          Docs
+          <span>Guides, references, and tutorials</span>
+        </a>
+        <a href="https://jams.hackclub.com" class="help-link">
+          Jams
+          <span>Hands-on workshops to build with friends</span>
+        </a>
+        <a href="https://hackclub.com/tutorials" class="help-link">
+          Tutorials
+          <span>Step-by-step projects to get you started</span>
+        </a>
+        <a href="https://hackclub.com/docs" class="help-link">
+          Hardware Docs
+          <span>Everything about electronics at Hack Club</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Community ── -->
+  <section id="community">
+    <div class="container">
+      <h2>Community</h2>
+      <h3>Have Questions? Looking for Help?</h3>
+      <p>Join the <strong>#electronics</strong> channel on the Hack Club Slack. Thousands of makers share projects, ask questions, and help each other debug hardware every day.</p>
+      <a href="https://slack.hackclub.com" class="btn btn-primary">Join #electronics on Slack</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        &copy; 2024 Hack Club &mdash;
+        <a href="https://hackclub.com">hackclub.com</a> &middot;
+        <a href="https://hackclub.com/about">About</a> &middot;
+        <a href="https://hackclub.com/donate">Donate</a>
+      </div>
+      <div>We start new hardware programs regularly — check back often!</div>
+    </div>
+  </footer>
+
+</body>
+</html>
