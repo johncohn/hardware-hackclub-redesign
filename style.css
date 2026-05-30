@@ -246,23 +246,19 @@ img {
 }
 
 .cta-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
+  text-align: center;
 }
 
 .cta-text h2 {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .cta-text p {
-  font-size: 16px;
-  color: rgba(255,255,255,0.85);
+  font-size: 18px;
+  color: rgba(255,255,255,0.88);
 }
 
 .btn-cta-big {
