@@ -54,10 +54,10 @@ body::before {
   position: fixed;
   inset: 0;
   background: url('assets/pcb-bg.jpg') center center / 600px auto repeat;
-  opacity: 0.055;
+  opacity: 0.12;
   pointer-events: none;
   z-index: 0;
-  mix-blend-mode: luminosity;
+  mix-blend-mode: screen;
 }
 
 /* Ensure all page content sits above the background */
@@ -165,8 +165,8 @@ img {
 .photo-credit {
   font-size: 11px;
   color: #3c4858;
-  text-align: right;
-  margin-top: 6px;
+  text-align: center;
+  margin-top: 14px;
   font-style: italic;
 }
 
