@@ -1,0 +1,42 @@
+{
+  "goal": "A redesigned landing page for hardware.hackclub.com that showcases all Hackclub hardware programs (current and past), features a scrolling project gallery, and matches the fun, eclectic Hackclub aesthetic with dark theme and brand colors.",
+  "scope": [
+    "index.html",
+    "style.css",
+    "assets/**"
+  ],
+  "guards": [
+    "Do not delete or overwrite existing tests",
+    "Do not modify files outside the declared scope",
+    "Do not introduce secrets or credentials into the repository"
+  ],
+  "eval_command": "python3 eval/score.py",
+  "eval_threshold": 0.95,
+  "constraints": [
+    "Do not use React, Vue, Next.js, or any JavaScript framework \u2014 plain HTML/CSS/JS only",
+    "Do not use external JS libraries (jQuery, GSAP, etc.) \u2014 vanilla only",
+    "Do not invent new brand colors \u2014 use only the official Hackclub token set (#ec3750, #121217, #252429, etc.)",
+    "Do not change href values for any of the 9 program links",
+    "Run python3 eval/score.py after every change \u2014 must stay at 1.0"
+  ],
+  "hypothesis_budget": {
+    "min_growth": 2,
+    "max_new": 2,
+    "min_fix": 0,
+    "max_total": null
+  },
+  "target_branch": "main",
+  "smoke_test": "python3 -c \"html=open('index.html').read(); assert 'Hardware' in html; assert 'fallout.hackclub.com' in html; assert '@keyframes marquee' in html; print('smoke ok')\"",
+  "project_eval": [],
+  "eval_weights": {
+    "hygiene": 0.5,
+    "growth": 0.5,
+    "project": 0.0
+  },
+  "research_target": null,
+  "mutable_surfaces": [],
+  "fixed_surfaces": [],
+  "research_constraints": [],
+  "cost_budget": null,
+  "hard_constraints": []
+}

@@ -1,0 +1,5 @@
+- Real project photos for gallery cards (sourced from teen makers)
+- Real gallery images for marquee (current placeholder grid is shippable)
+- Program-specific hero images
+- **Real project photos for gallery**: Need sourcing from teen maker community (highway.hackclub.com/projects, magazine.hackclub.com)
+- **Real marquee images**: Current placeholder colored-card grid is shippable; swap in when photos are available

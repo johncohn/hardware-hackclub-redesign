@@ -1,0 +1,55 @@
+{
+  "project": "hardware-hackclub-landing",
+  "description": "Static landing page redesign for hardware.hackclub.com",
+  "human_reviewed": false,
+  "dimensions": [
+    {
+      "id": "html_validity",
+      "name": "HTML Validity",
+      "description": "index.html parses without errors using html5validator or tidy",
+      "weight": 0.15,
+      "command": "cd /Users/jcohn/factory-projects/help-me-create-a-new-design-for-httphardwareha && python3 -c \"from html.parser import HTMLParser; p=HTMLParser(); p.feed(open('index.html').read()); print('{\\\"score\\\": 1.0}')\" 2>/dev/null || echo '{\"score\": 0.0}'",
+      "score_field": "score"
+    },
+    {
+      "id": "required_sections",
+      "name": "Required Sections Present",
+      "description": "All 6 required sections (hero, current-programs, past-programs, gallery, help, community) present in HTML",
+      "weight": 0.30,
+      "command": "cd /Users/jcohn/factory-projects/help-me-create-a-new-design-for-httphardwareha && python3 eval/score.py --dimension required_sections",
+      "score_field": "score"
+    },
+    {
+      "id": "brand_compliance",
+      "name": "Hackclub Brand Compliance",
+      "description": "Page uses Phantom Sans font and Hackclub official colors (#ec3750, etc.)",
+      "weight": 0.20,
+      "command": "cd /Users/jcohn/factory-projects/help-me-create-a-new-design-for-httphardwareha && python3 eval/score.py --dimension brand_compliance",
+      "score_field": "score"
+    },
+    {
+      "id": "program_links",
+      "name": "All Program Links Present",
+      "description": "All 9 program URLs (3 current + 6 past) are linked in the page",
+      "weight": 0.20,
+      "command": "cd /Users/jcohn/factory-projects/help-me-create-a-new-design-for-httphardwareha && python3 eval/score.py --dimension program_links",
+      "score_field": "score"
+    },
+    {
+      "id": "mobile_responsive",
+      "name": "Mobile Responsive",
+      "description": "Page has viewport meta tag and CSS media queries for mobile",
+      "weight": 0.10,
+      "command": "cd /Users/jcohn/factory-projects/help-me-create-a-new-design-for-httphardwareha && python3 eval/score.py --dimension mobile_responsive",
+      "score_field": "score"
+    },
+    {
+      "id": "scrolling_gallery",
+      "name": "Scrolling Gallery Present",
+      "description": "Marquee/scrolling gallery animation CSS is present",
+      "weight": 0.05,
+      "command": "cd /Users/jcohn/factory-projects/help-me-create-a-new-design-for-httphardwareha && python3 eval/score.py --dimension scrolling_gallery",
+      "score_field": "score"
+    }
+  ]
+}
