@@ -94,17 +94,6 @@
       background: #121217;
     }
 
-    /* PCB trace background — subtle copper traces on dark board */
-    #hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='none' stroke='rgba(255,140,55,0.13)' stroke-width='1.5'%3E%3Cline x1='0' y1='40' x2='60' y2='40'/%3E%3Cline x1='60' y1='40' x2='60' y2='10'/%3E%3Cline x1='60' y1='10' x2='120' y2='10'/%3E%3Cline x1='120' y1='10' x2='120' y2='80'/%3E%3Cline x1='120' y1='80' x2='160' y2='80'/%3E%3Cline x1='20' y1='100' x2='20' y2='130'/%3E%3Cline x1='20' y1='130' x2='80' y2='130'/%3E%3Cline x1='80' y1='130' x2='80' y2='100'/%3E%3Cline x1='80' y1='100' x2='160' y2='100'/%3E%3Cline x1='0' y1='160' x2='40' y2='160'/%3E%3Cline x1='40' y1='160' x2='40' y2='140'/%3E%3Cline x1='40' y1='140' x2='100' y2='140'/%3E%3C/g%3E%3Cg fill='rgba(255,140,55,0.18)'%3E%3Ccircle cx='60' cy='40' r='3'/%3E%3Ccircle cx='120' cy='10' r='3'/%3E%3Ccircle cx='120' cy='80' r='3'/%3E%3Ccircle cx='20' cy='130' r='3'/%3E%3Ccircle cx='80' cy='130' r='3'/%3E%3Ccircle cx='80' cy='100' r='3'/%3E%3Ccircle cx='40' cy='140' r='3'/%3E%3C/g%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.9;
-    }
-
     #hero .container {
       position: relative;
       z-index: 1;
@@ -391,8 +380,8 @@
       <a href="/" class="nav-logo">Hack Club</a>
       <div class="nav-links">
         <a href="https://hackclub.com/docs">Docs</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#">Leaderboard</a>
+        <a href="https://hardware.hackclub.com/gallery">Gallery</a>
+        <a href="https://hardware.hackclub.com/leaderboard">Leaderboard</a>
         <a href="https://slack.hackclub.com" class="btn btn-primary">Join Slack</a>
       </div>
     </div>
@@ -422,32 +411,27 @@
     </div>
     <div class="marquee-wrap">
       <div class="marquee-track">
-        <!-- 12 project cards -->
-        <div class="gallery-card" style="background: linear-gradient(135deg, #ec3750, #ff8c37);">Custom PCB</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #ff8c37, #f1c40f);">LED Matrix</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #33d6a6, #338eda);">FPGA Board</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #338eda, #a633d6);">Mech Keyboard</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #a633d6, #ec3750);">Robot Arm</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #5bc0de, #33d6a6);">Weather Station</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #f1c40f, #33d6a6);">Synthesizer</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #ec3750, #a633d6);">RC Car Controller</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #338eda, #5bc0de);">Smart Mirror</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #ff8c37, #ec3750);">Laser Cutter</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #a633d6, #338eda);">3D Printer Mod</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #33d6a6, #f1c40f);">Guitar Pedal</div>
+        <div class="gallery-card" style="background-image:url('https://cloud-hy108iezt-hack-club-bot.vercel.app/0dinopcb.png')"><span>Dino PCB</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-f4lij7sq1-hack-club-bot.vercel.app/0flowerpcb.png')"><span>Flower PCB</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-myjum5y6g-hack-club-bot.vercel.app/0longhorn2.png')"><span>Longhorn PCB</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-r2xrlpq9q-hack-club-bot.vercel.app/0spinner.png')"><span>Spinner PCB</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-6a1wip38p-hack-club-bot.vercel.app/1totk_key.png')"><span>TOTK Key</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-c953eezuq-hack-club-bot.vercel.app/0hub.png')"><span>Hub PCB</span></div>
+        <div class="gallery-card" style="background-image:url('https://highway.hackclub.com/desc2.png')"><span>3D Printer Build</span></div>
+        <div class="gallery-card" style="background-image:url('https://highway.hackclub.com/desc3.png')"><span>Hack Club Scrapyard</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-8lszi55ph-hack-club-bot.vercel.app/10frame_2.png')"><span>Frame Project</span></div>
+        <div class="gallery-card" style="background-image:url('https://highway.hackclub.com/desc1.png')"><span>Learn. Design. Make.</span></div>
         <!-- Duplicated for seamless loop -->
-        <div class="gallery-card" style="background: linear-gradient(135deg, #ec3750, #ff8c37);">Custom PCB</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #ff8c37, #f1c40f);">LED Matrix</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #33d6a6, #338eda);">FPGA Board</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #338eda, #a633d6);">Mech Keyboard</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #a633d6, #ec3750);">Robot Arm</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #5bc0de, #33d6a6);">Weather Station</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #f1c40f, #33d6a6);">Synthesizer</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #ec3750, #a633d6);">RC Car Controller</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #338eda, #5bc0de);">Smart Mirror</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #ff8c37, #ec3750);">Laser Cutter</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #a633d6, #338eda);">3D Printer Mod</div>
-        <div class="gallery-card" style="background: linear-gradient(135deg, #33d6a6, #f1c40f);">Guitar Pedal</div>
+        <div class="gallery-card" style="background-image:url('https://cloud-hy108iezt-hack-club-bot.vercel.app/0dinopcb.png')"><span>Dino PCB</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-f4lij7sq1-hack-club-bot.vercel.app/0flowerpcb.png')"><span>Flower PCB</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-myjum5y6g-hack-club-bot.vercel.app/0longhorn2.png')"><span>Longhorn PCB</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-r2xrlpq9q-hack-club-bot.vercel.app/0spinner.png')"><span>Spinner PCB</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-6a1wip38p-hack-club-bot.vercel.app/1totk_key.png')"><span>TOTK Key</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-c953eezuq-hack-club-bot.vercel.app/0hub.png')"><span>Hub PCB</span></div>
+        <div class="gallery-card" style="background-image:url('https://highway.hackclub.com/desc2.png')"><span>3D Printer Build</span></div>
+        <div class="gallery-card" style="background-image:url('https://highway.hackclub.com/desc3.png')"><span>Hack Club Scrapyard</span></div>
+        <div class="gallery-card" style="background-image:url('https://cloud-8lszi55ph-hack-club-bot.vercel.app/10frame_2.png')"><span>Frame Project</span></div>
+        <div class="gallery-card" style="background-image:url('https://highway.hackclub.com/desc1.png')"><span>Learn. Design. Make.</span></div>
       </div>
     </div>
   </section>
@@ -475,6 +459,17 @@
         </a>
       </div>
       <p class="note">We start new campaigns regularly, so check back often!</p>
+    </div>
+  </section>
+
+  <!-- ── CTA Band ── -->
+  <section id="cta-band">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Got an idea? Build it.</h2>
+        <p>Hack Club will help you get the components, PCBs, and support to make it real.</p>
+      </div>
+      <a href="https://fallout.hackclub.com/" class="btn btn-cta-big">Start Building →</a>
     </div>
   </section>
 

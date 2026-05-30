@@ -207,17 +207,72 @@ img {
 
 .gallery-card {
   flex-shrink: 0;
-  min-width: 200px;
-  height: 150px;
+  min-width: 240px;
+  height: 170px;
   border-radius: 12px;
   display: flex;
   align-items: flex-end;
-  padding: 12px;
-  font-size: 14px;
+  padding: 10px 12px;
+  font-size: 13px;
   font-weight: 700;
   color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   box-shadow: var(--shadow-card);
+  background-size: cover;
+  background-position: center;
+  background-color: #252429;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark gradient at bottom for label legibility */
+.gallery-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.gallery-card span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── CTA Band ── */
+#cta-band {
+  background: linear-gradient(135deg, #ec3750 0%, #a633d6 100%);
+  padding: 56px 0;
+}
+
+.cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.cta-text h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.cta-text p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+}
+
+.btn-cta-big {
+  background: #ffffff;
+  color: #ec3750;
+  font-size: 18px;
+  padding: 16px 36px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
 }
 
 /* ── Section shared styles ── */
@@ -313,7 +368,7 @@ section h3 {
 
 /* ── Past Programs ── */
 #past-programs {
-  background: #17171d;
+  background: rgba(23, 23, 29, 0.7);
 }
 
 .program-grid.past {
@@ -370,7 +425,7 @@ section h3 {
 
 /* ── Community ── */
 #community {
-  background: #17171d;
+  background: rgba(23, 23, 29, 0.7);
   text-align: center;
 }
 
@@ -396,7 +451,7 @@ section h3 {
 
 /* ── Footer ── */
 footer {
-  background: #17171d;
+  background: rgba(23, 23, 29, 0.85);
   border-top: 1px solid #252429;
   padding: 32px 0;
 }
