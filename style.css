@@ -302,7 +302,7 @@ section h3 {
 }
 
 #current-programs .program-grid {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .program-card {
@@ -311,7 +311,8 @@ section h3 {
   border: none;
   position: relative;
   overflow: hidden;
-  height: 240px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   background-size: cover;
   background-position: top center;
   background-color: #252429;
@@ -571,10 +572,6 @@ footer {
 
   .program-grid {
     grid-template-columns: 1fr;
-  }
-
-  #current-programs .program-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .program-grid.past {
