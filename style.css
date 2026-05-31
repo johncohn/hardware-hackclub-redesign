@@ -302,30 +302,17 @@ section h3 {
 }
 
 .program-card {
-  background-image: none !important;
-  background-color: #252429;
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1a1a20;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Center a lone card on row 2 by placing it in the middle column */
+/* Center a lone card on row 2 into the middle column */
 .program-card:last-child:nth-child(3n+1) {
   grid-column: 2;
-}
-
-.program-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-}
-
-.program-card {
-  border-radius: 12px;
-  display: block;
-  border: none;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .program-card:hover {
@@ -333,45 +320,64 @@ section h3 {
   box-shadow: 0 12px 40px rgba(0,0,0,0.5);
 }
 
-/* No overlay on the image — card-content carries its own dark background */
+/* Image wrapper clips the hover panel */
+.card-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
 
-/* Label bar pinned to bottom */
-.card-content {
+.card-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Hover panel slides up from below the image */
+.card-hover {
   position: absolute;
-  bottom: 0;
   left: 0;
   right: 0;
-  padding: 10px 14px 12px;
-  background: rgba(0,0,0,0.75);
-  backdrop-filter: blur(4px);
-  z-index: 1;
+  bottom: -100%;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(6px);
+  transition: bottom 0.3s ease;
 }
 
-.program-card h4 {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 6px 0 0;
-  color: #ffffff;
-  line-height: 1.2;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.9);
-}
-
-/* Description hidden, slides up on hover */
-.card-desc {
+.card-hover p {
+  margin: 0;
   font-size: 13px;
+  line-height: 1.6;
   color: #ffffff;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.9);
-  line-height: 1.5;
-  margin: 6px 0 0;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.25s ease;
 }
 
-.program-card:hover .card-desc {
-  max-height: 80px;
-  opacity: 1;
+.program-card:hover .card-hover {
+  bottom: 0;
+}
+
+/* Thin info bar below the image */
+.card-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: #1a1a20;
+  min-height: 42px;
+}
+
+.card-bar h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f9fafc;
+  margin: 0;
+}
+
+.past-card .card-bar {
+  background: #17171d;
+}
+
+.past-card .card-bar h4 {
+  color: #8492a6;
 }
 
 /* ── Badges ── */
