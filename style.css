@@ -295,23 +295,20 @@ section h3 {
 
 /* ── Program Cards ── */
 .program-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-bottom: 24px;
 }
 
 .program-card {
-  flex: 0 0 calc(33.333% - 11px);
   background-image: none !important;
   background-color: #252429;
 }
 
-/* Center a lone card on the last row */
+/* Center a lone card on row 2 by placing it in the middle column */
 .program-card:last-child:nth-child(3n+1) {
-  margin-left: auto;
-  margin-right: auto;
+  grid-column: 2;
 }
 
 .program-card img {
@@ -336,26 +333,17 @@ section h3 {
   box-shadow: 0 12px 40px rgba(0,0,0,0.5);
 }
 
-/* Thin dark strip at bottom only — keeps screenshots vibrant */
-.program-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.4) 25%, transparent 50%);
-  pointer-events: none;
-}
+/* No overlay on the image — card-content carries its own dark background */
 
-.past-card::after {
-  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.4) 25%, transparent 50%);
-}
-
-/* Content sits above gradient */
+/* Label bar pinned to bottom */
 .card-content {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 16px;
+  padding: 10px 14px 12px;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(4px);
   z-index: 1;
 }
 
@@ -578,12 +566,12 @@ footer {
     font-size: 17px;
   }
 
-  .program-card {
-    flex: 0 0 calc(50% - 8px);
+  .program-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .program-grid.past .program-card {
-    flex: 0 0 calc(50% - 8px);
+  .program-card:last-child:nth-child(3n+1) {
+    grid-column: auto;
   }
 
   .nav-links a:not(.btn) {
@@ -596,8 +584,8 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .program-card {
-    flex: 0 0 100%;
+  .program-grid {
+    grid-template-columns: 1fr;
   }
 
   #hero {
