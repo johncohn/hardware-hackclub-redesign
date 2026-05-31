@@ -315,7 +315,7 @@ section h3 {
   aspect-ratio: 16 / 9;
   height: auto;
   background-size: cover;
-  background-position: top center;
+  background-position: center center;
   background-color: #252429;
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -361,7 +361,7 @@ section h3 {
 /* Description hidden, slides up on hover */
 .card-desc {
   font-size: 13px;
-  color: rgba(255,255,255,0.85);
+  color: #ffffff;
   line-height: 1.5;
   margin: 6px 0 0;
   max-height: 0;
