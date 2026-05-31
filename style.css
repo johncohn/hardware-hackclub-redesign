@@ -304,6 +304,15 @@ section h3 {
 
 .program-card {
   flex: 0 0 calc(33.333% - 11px);
+  background-image: none !important;
+  background-color: #252429;
+}
+
+.program-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
 }
 
 .program-card {
@@ -312,11 +321,6 @@ section h3 {
   border: none;
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
-  height: auto;
-  background-size: cover;
-  background-position: center center;
-  background-color: #252429;
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
