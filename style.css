@@ -297,7 +297,7 @@ section h3 {
 .program-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 16px;
   margin-bottom: 24px;
 }
 
@@ -306,31 +306,71 @@ section h3 {
 }
 
 .program-card {
-  background: #252429;
   border-radius: 12px;
-  padding: 24px;
   display: block;
-  border: 1px solid #3c4858;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border: none;
   position: relative;
+  overflow: hidden;
+  height: 240px;
+  background-size: cover;
+  background-position: top center;
+  background-color: #252429;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .program-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-elevated);
+  transform: scale(1.02);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+/* Gradient overlay — darkens bottom for text legibility */
+.program-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.05) 100%);
+  pointer-events: none;
+}
+
+/* Slightly extra dim for past cards */
+.past-card::after {
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.2) 100%);
+}
+
+/* Content sits above gradient */
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  z-index: 1;
 }
 
 .program-card h4 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  margin: 12px 0 8px;
-  color: #f9fafc;
+  margin: 6px 0 0;
+  color: #ffffff;
+  line-height: 1.2;
 }
 
-.program-card p {
-  font-size: 14px;
-  color: #8492a6;
-  line-height: 1.6;
+/* Description hidden, slides up on hover */
+.card-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+  margin: 6px 0 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+}
+
+.program-card:hover .card-desc {
+  max-height: 80px;
+  opacity: 1;
 }
 
 /* ── Badges ── */
@@ -374,20 +414,6 @@ section h3 {
 .program-grid.past {
   grid-template-columns: repeat(3, 1fr);
 }
-
-.past-card {
-  opacity: 0.85;
-}
-
-.past-card:hover {
-  opacity: 1;
-}
-
-/* ── Current program card color accents ── */
-.card-fallout   { border-left: 4px solid #ec3750; }
-.card-stasis    { border-left: 4px solid #338eda; }
-.card-hackpad   { border-left: 4px solid #33d6a6; }
-.card-stardance { border-left: 4px solid #a633d6; }
 
 
 /* ── Get Help ── */
