@@ -295,14 +295,15 @@ section h3 {
 
 /* ── Program Cards ── */
 .program-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
   margin-bottom: 24px;
 }
 
-#current-programs .program-grid {
-  grid-template-columns: repeat(3, 1fr);
+.program-card {
+  flex: 0 0 calc(33.333% - 11px);
 }
 
 .program-card {
@@ -311,7 +312,7 @@ section h3 {
   border: none;
   position: relative;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 16 / 9;
   height: auto;
   background-size: cover;
   background-position: top center;
@@ -410,10 +411,6 @@ section h3 {
 /* ── Past Programs ── */
 #past-programs {
   background: rgba(23, 23, 29, 0.7);
-}
-
-.program-grid.past {
-  grid-template-columns: repeat(3, 1fr);
 }
 
 
@@ -570,12 +567,12 @@ footer {
     font-size: 17px;
   }
 
-  .program-grid {
-    grid-template-columns: 1fr;
+  .program-card {
+    flex: 0 0 calc(50% - 8px);
   }
 
-  .program-grid.past {
-    grid-template-columns: repeat(2, 1fr);
+  .program-grid.past .program-card {
+    flex: 0 0 calc(50% - 8px);
   }
 
   .nav-links a:not(.btn) {
@@ -588,8 +585,8 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .program-grid.past {
-    grid-template-columns: 1fr;
+  .program-card {
+    flex: 0 0 100%;
   }
 
   #hero {
