@@ -269,7 +269,11 @@ img {
 
 /* ── Section shared styles ── */
 section {
-  padding: 64px 0;
+  padding: 48px 0;
+}
+
+#current-programs {
+  padding-top: 32px;
 }
 
 section h2 {
