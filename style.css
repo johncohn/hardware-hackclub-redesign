@@ -41,17 +41,22 @@
 
 body {
   font-family: 'Phantom Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  /* PCB pattern baked into body background — shows through any transparent section */
-  background-color: #121217;
-  background-image:
-    linear-gradient(rgba(18,18,23,0.80), rgba(18,18,23,0.80)),
-    url('assets/pcb-bg.jpg');
-  background-size: auto, 600px auto;
-  background-attachment: fixed, fixed;
-  background-repeat: repeat, repeat;
+  background: #121217;
   color: #f9fafc;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+/* PCB circuit board — fixed to viewport, visible through all transparent sections */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('assets/pcb-bg.jpg') center center / 600px auto repeat;
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
 }
 
 a {
