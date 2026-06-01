@@ -420,7 +420,7 @@ section h3 {
 
 /* ── Past Programs ── */
 #past-programs {
-  background: rgba(23, 23, 29, 0.7);
+  background: transparent;
 }
 
 
@@ -460,7 +460,7 @@ section h3 {
 
 /* ── Community ── */
 #community {
-  background: rgba(23, 23, 29, 0.7);
+  background: transparent;
   text-align: center;
 }
 
@@ -486,7 +486,7 @@ section h3 {
 
 /* ── Sponsors ── */
 #sponsors {
-  background: rgba(23, 23, 29, 0.8);
+  background: transparent;
   border-top: 1px solid #252429;
 }
 
@@ -544,7 +544,7 @@ section h3 {
 
 /* ── Footer ── */
 footer {
-  background: rgba(23, 23, 29, 0.85);
+  background: transparent;
   border-top: 1px solid #252429;
   padding: 32px 0;
 }
