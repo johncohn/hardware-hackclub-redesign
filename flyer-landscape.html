@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hardware @ Hack Club — Landscape Flyer</title>
+  <link rel="stylesheet" href="https://css.hackclub.com/fonts.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Phantom Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a10;
+      color: #f9fafc;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 32px 16px;
+    }
+
+    /* ── 11×8.5in landscape page ── */
+    .slide {
+      position: relative;
+      width: 11in;
+      height: 8.5in;
+      background: #121217;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+      flex-shrink: 0;
+    }
+
+    /* PCB circuit board layer */
+    .slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/pcb-bg.jpg') center / 500px auto repeat;
+      opacity: 0.26;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .topbar, .slide-body, .slide-footer { position: relative; z-index: 1; }
+
+    .topbar {
+      height: 5px;
+      flex-shrink: 0;
+      background: linear-gradient(90deg, #ec3750 0%, #ff8c37 45%, #a633d6 100%);
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 22px 52px 18px;
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .rule {
+      height: 1px;
+      flex-shrink: 0;
+      background: linear-gradient(90deg, #ec3750 0%, transparent 60%);
+      opacity: 0.35;
+    }
+
+    .sec-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: #8492a6;
+      margin-bottom: 9px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #33d6a6;
+      margin-right: 4px;
+      vertical-align: middle;
+      position: relative; top: -1px;
+    }
+
+    /* ─────────────────────────────────────────
+       HEADER: title | tagline | sparkle
+       Sparkle is absolutely anchored right so
+       text flows freely without a hard column.
+    ───────────────────────────────────────── */
+    .header-band {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .header-text {
+      max-width: 660px;
+      padding-right: 240px; /* clear the sparkle */
+    }
+
+    .eyebrow {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: #ec3750;
+      margin-bottom: 8px;
+    }
+
+    .slide-title {
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -3px;
+      margin-bottom: 12px;
+    }
+    .slide-title .red { color: #ec3750; }
+
+    .tagline {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #c8cfd8;
+      max-width: 540px;
+    }
+
+    /* Sparkle Tilt — sits in the top-right of the header band, absolutely placed */
+    .sparkle-anchor {
+      position: absolute;
+      right: 0;
+      top: -4px;
+      bottom: 0;
+      width: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .sparkle-anchor img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .sparkle-credit {
+      font-size: 8.5px;
+      color: #3c4858;
+      text-align: center;
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    /* ─────────────────────────────────────────
+       ACTIVE PROGRAMS — 4 cards, full width
+    ───────────────────────────────────────── */
+    .prog-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .prog-card {
+      background: #1a1a22;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #2a2a34;
+    }
+
+    .prog-card img {
+      width: 100%;
+      height: 78px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .prog-card-body { padding: 7px 9px 8px; }
+
+    .prog-card-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #f9fafc;
+      margin-bottom: 2px;
+    }
+
+    .prog-card-desc {
+      font-size: 10px;
+      color: #8492a6;
+      line-height: 1.4;
+    }
+
+    /* ─────────────────────────────────────────
+       PAST PROGRAMS — single slim pill row
+    ───────────────────────────────────────── */
+    .past-band {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .past-list {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .past-pill {
+      background: #1a1a22;
+      border: 1px solid #2a2a34;
+      border-radius: 99px;
+      padding: 3px 11px;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #8492a6;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .past-pill .yr {
+      font-size: 9px;
+      font-weight: 400;
+      color: #3c4858;
+    }
+
+    /* ─────────────────────────────────────────
+       GALLERY — 6 photos in a single wide row
+    ───────────────────────────────────────── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .gallery-card {
+      border-radius: 7px;
+      overflow: hidden;
+      background: #1a1a22;
+      border: 1px solid #2a2a34;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-card-name {
+      font-size: 9px;
+      font-weight: 600;
+      color: #c8cfd8;
+      padding: 4px 6px 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ─────────────────────────────────────────
+       BOTTOM — community · QR · sponsors
+       Three zones across the full width.
+    ───────────────────────────────────────── */
+    .bottom-band {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      flex-shrink: 0;
+    }
+
+    .community-block { flex: 1; min-width: 0; }
+
+    .community-block h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f9fafc;
+      margin-bottom: 3px;
+    }
+
+    .community-block p {
+      font-size: 11px;
+      color: #8492a6;
+      line-height: 1.45;
+      margin-bottom: 9px;
+      max-width: 380px;
+    }
+
+    .cta-pill {
+      display: inline-block;
+      background: linear-gradient(135deg, #ec3750, #ff8c37);
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 99px;
+    }
+
+    /* Vertical separator */
+    .bottom-rule {
+      width: 1px;
+      height: 64px;
+      background: #252429;
+      flex-shrink: 0;
+    }
+
+    .qr-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .qr-wrap {
+      background: #fff;
+      border-radius: 7px;
+      padding: 5px;
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+    }
+    .qr-wrap img { width: 100%; height: 100%; display: block; }
+
+    .qr-text { display: flex; flex-direction: column; gap: 2px; }
+    .qr-url  { font-size: 11.5px; font-weight: 700; color: #ec3750; letter-spacing: -0.3px; }
+    .qr-sub  { font-size: 9.5px; color: #8492a6; }
+
+    .sponsors-block {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 7px;
+    }
+
+    .sponsor-logos {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .spon {
+      background: #fff;
+      border-radius: 5px;
+      padding: 4px 8px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .spon img { height: 13px; width: auto; max-width: 50px; object-fit: contain; display: block; }
+    .spon.dark { background: #1a1a1a; }
+
+    /* ── Footer ── */
+    .slide-footer {
+      flex-shrink: 0;
+      background: rgba(10,10,16,0.85);
+      border-top: 1px solid #1e1e26;
+      padding: 7px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-brand { font-size: 11px; font-weight: 700; color: #ec3750; }
+    .footer-note  { font-size: 9.5px; color: #3c4858; }
+
+    /* ── Print ── */
+    @page {
+      size: 11in 8.5in landscape;
+      margin: 0;
+    }
+
+    @media print {
+      body {
+        background: #121217;
+        padding: 0;
+        min-height: unset;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      .slide {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="slide">
+  <div class="topbar"></div>
+
+  <div class="slide-body">
+
+    <!-- HEADER -->
+    <div class="header-band">
+      <div class="header-text">
+        <p class="eyebrow">Hack Club &mdash; Electronics for Teens</p>
+        <h1 class="slide-title"><span class="red">Hardware</span><br>@Hackclub</h1>
+        <p class="tagline">Since 2023, over 7,000 teen hackers have built electronics projects — from first-time soldering to custom PCBs, FPGAs, and robots. <strong>Anything you can imagine, you can build.</strong></p>
+      </div>
+      <div class="sparkle-anchor">
+        <img src="assets/sparkle-tilt.png" alt="Sparkle Tilt PCB by Karmanyaah Malhotra">
+        <p class="sparkle-credit">Sparkle Tilt by Karmanyaah Malhotra</p>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- ACTIVE PROGRAMS -->
+    <div>
+      <p class="sec-label"><span class="dot"></span>Active Programs — apply today</p>
+      <div class="prog-grid">
+        <div class="prog-card">
+          <img src="assets/prog-fallout.jpg" alt="Fallout">
+          <div class="prog-card-body">
+            <p class="prog-card-name">Fallout</p>
+            <p class="prog-card-desc">Build hardware projects and earn grants.</p>
+          </div>
+        </div>
+        <div class="prog-card">
+          <img src="assets/prog-stasis.jpg" alt="Stasis">
+          <div class="prog-card-body">
+            <p class="prog-card-name">Stasis</p>
+            <p class="prog-card-desc">Archive and showcase completed projects.</p>
+          </div>
+        </div>
+        <div class="prog-card">
+          <img src="assets/prog-hackpad.jpg" alt="Hackpad">
+          <div class="prog-card-body">
+            <p class="prog-card-name">Hackpad</p>
+            <p class="prog-card-desc">Design and build a custom macropad.</p>
+          </div>
+        </div>
+        <div class="prog-card">
+          <img src="assets/prog-stardance.jpg" alt="Stardance">
+          <div class="prog-card-body">
+            <p class="prog-card-name">Stardance</p>
+            <p class="prog-card-desc">Hardware that moves, lights up, dances.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- PAST PROGRAMS -->
+    <div class="past-band">
+      <p class="sec-label" style="margin-bottom:0; white-space:nowrap">Past Programs</p>
+      <div class="past-list">
+        <span class="past-pill">Blueprint <span class="yr">2024</span></span>
+        <span class="past-pill">Undercity <span class="yr">2024</span></span>
+        <span class="past-pill">Highway <span class="yr">2024</span></span>
+        <span class="past-pill">Solder <span class="yr">2023</span></span>
+        <span class="past-pill">The Bin <span class="yr">2023</span></span>
+        <span class="past-pill">OnBoard <span class="yr">2023</span></span>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- GALLERY -->
+    <div>
+      <p class="sec-label">What Hackclubbers Build</p>
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img src="assets/gallery-proj11.jpg" alt="Athena V1">
+          <p class="gallery-card-name">Athena V1</p>
+        </div>
+        <div class="gallery-card">
+          <img src="assets/gallery-proj13.jpg" alt="Biblically Accurate Keyboard">
+          <p class="gallery-card-name">Biblically Accurate Keyboard</p>
+        </div>
+        <div class="gallery-card">
+          <img src="assets/gallery-proj17.jpg" alt="PR1SM Keyboard">
+          <p class="gallery-card-name">PR1SM Keyboard</p>
+        </div>
+        <div class="gallery-card">
+          <img src="assets/gallery-proj14.jpg" alt="Cybercard">
+          <p class="gallery-card-name">Cybercard</p>
+        </div>
+        <div class="gallery-card">
+          <img src="assets/gallery-proj20.jpg" alt="ChessPotato">
+          <p class="gallery-card-name">ChessPotato</p>
+        </div>
+        <div class="gallery-card">
+          <img src="assets/gallery-proj24.jpg" alt="Slider Synth">
+          <p class="gallery-card-name">Slider Synth</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- BOTTOM: community · QR · sponsors -->
+    <div class="bottom-band">
+      <div class="community-block">
+        <h3>Join the community</h3>
+        <p>Ask questions, share projects, and get help from thousands of makers in the <strong>#electronics</strong> channel on Hack Club Slack.</p>
+        <span class="cta-pill">slack.hackclub.com</span>
+      </div>
+
+      <div class="bottom-rule"></div>
+
+      <div class="qr-block">
+        <div class="qr-wrap">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http%3A%2F%2Fhardware.hackclub.com&color=121217&bgcolor=ffffff&margin=0"
+               alt="QR code — hardware.hackclub.com">
+        </div>
+        <div class="qr-text">
+          <span class="qr-url">hardware.hackclub.com</span>
+          <span class="qr-sub">Scan to explore all programs</span>
+        </div>
+      </div>
+
+      <div class="bottom-rule"></div>
+
+      <div class="sponsors-block">
+        <p class="sec-label" style="margin-bottom:0">Supported by</p>
+        <div class="sponsor-logos">
+          <div class="spon"><img src="assets/logo-ieee.png" alt="IEEE SSCS"></div>
+          <div class="spon"><img src="assets/logo-amd.png" alt="AMD"></div>
+          <div class="spon"><img src="assets/logo-github.png" alt="GitHub"></div>
+          <div class="spon"><img src="assets/logo-dell.png" alt="Dell"></div>
+          <div class="spon"><img src="assets/logo-argosy.png" alt="Argosy Foundation"></div>
+          <div class="spon dark"><img src="assets/logo-nasa.png" alt="NASA"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /slide-body -->
+
+  <div class="slide-footer">
+    <span class="footer-brand">Hack Club Hardware</span>
+    <span class="footer-note">A 501(c)(3) nonprofit &mdash; hackclub.com</span>
+  </div>
+</div>
+
+</body>
+</html>
